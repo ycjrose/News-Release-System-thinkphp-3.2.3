@@ -1,0 +1,58 @@
+
+<include file="Index/header" />
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-9">
+        <div class="banner">
+          <div class="banner-left">
+            <div class="banner-info"><span>阅读数</span><i class="news_count node-{$result['topPicNews'][0]['news_id']}" news-id="{$result['topPicNews'][0]['news_id']}"></i></div>
+            <a href="/index.php?c=detail&id={$result['topPicNews'][0]['news_id']}" target="_blank"><img src="{$result['topPicNews'][0]['thumb']}" alt="{$result['topPicNews'][0]['title']}" width="670" height="360"></a>
+          </div>
+          <div class="banner-right">
+            <ul>
+              <volist name="result['topSmallNews']" id="vo">
+                <li>
+                  <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank"><img src="{$vo.thumb}" alt="{$vo.title}" width="150" height="113"></a>
+                </li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+        <div class="news-list">
+          <volist name="result['listNews']" id="vo">
+          <dl>
+            <dt><a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a></dt>
+            <dd class="news-img">
+              <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank"><img src="{$vo.thumb}" alt="{$vo.title}" width="200" height="120"></a>
+            </dd>
+            <dd class="news-intro">
+              {$vo.description}
+            </dd>
+            <dd class="news-info">
+              {$vo.keywords}
+              <span>
+                <if condition="$vo['update_time'] eq 0">{$vo.create_time|date="Y-m-d H:s",###}</if>
+                <if condition="$vo['update_time'] neq 0">{$vo.update_time|date="Y-m-d H:s",###}</if>
+              </span> 阅读(<i news-id="{$vo.news_id}" class="news_count node-{$vo.news_id}"></i>)
+            </dd>
+          </dl>
+          </volist>
+          
+        </div>
+      </div>
+      <!--网站右侧信息-->
+      <include file="Index/right" />
+    </div>
+  </div>
+</section>
+<script>
+  var SCOPE = {
+    'count_url' : '/index.php?c=index&a=get_count',
+    
+  }
+</script>
+</body>
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/count.js"></script>
+</html>

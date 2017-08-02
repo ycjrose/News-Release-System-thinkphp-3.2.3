@@ -1,0 +1,29 @@
+<?php $vo = $result['news'];?>
+<include file="Index/header" />
+<section>
+  <div class="container">
+    <div class="row"> 
+      <div class="col-sm-9 col-md-9">
+        
+        <div class="news-detail">
+          <h1 style="color: {$vo.title_font_color}">{$vo.title}</h1>
+          <h5>{$vo.small_title}</h5>阅读（<i news-id="{$vo.news_id}" class="news_count node-{$vo.news_id}"></i>）
+          <p>{$vo.content}</p>
+        </div>
+        
+      </div>
+      <!--网站右侧信息-->
+      <include file="Index/right" />
+    </div>
+  </div>
+</section>
+<script>
+  var SCOPE = {
+    'count_url' : '/index.php?c=index&a=get_count',
+    
+  }
+</script>
+</body>
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/count.js"></script>
+</html>
